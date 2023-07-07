@@ -1,0 +1,17 @@
+<div class="row my-4">
+    <div class="col-md-12">
+
+        <nav class="breadcrumb">
+          
+            <a class="breadcrumb-itemactive " href="#">Home movies</a>
+           
+        </nav>
+    </div>
+</div>
+
+
+<div class="row my-4">
+    <div class="col-md-3 col-sm-4 my-2"  *ngFor="let movie of movies ">
+      <app-card-film [my-movie]="movie"></app-card-film>
+    </div>
+</div>
