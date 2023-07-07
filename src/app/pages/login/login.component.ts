@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthResponse } from 'src/app/models/auth-response';
 import { UserCredentials } from 'src/app/models/user-credentials';
@@ -10,7 +11,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent  {
-  constructor(private authService : AuthService, private storage : LocalStorageService){}
+  constructor(private router : Router, private authService : AuthService, private storage : LocalStorageService){}
   
   userAuth : UserCredentials = {
     email : "",
@@ -20,7 +21,9 @@ export class LoginComponent  {
   signIn()
   {
     const {email , password } =  this.userAuth;
-    this.authService.login(email,password).subscribe(({token})=> this.storage.setToken(token));
+    this.authService.login(email,password).subscribe(({token})=> {this.storage.setToken(token)
+    this.router.navigate(['/'])
+    });
     
   }
 

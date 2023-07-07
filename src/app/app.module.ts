@@ -10,10 +10,11 @@ import { AboutComponent } from './pages/about/about.component';
 import { CardFilmComponent } from './components/card-film/card-film.component';
 import { SlideFilmComponent } from './components/slide-film/slide-film.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ResumePipe } from './pipes/resume.pipe';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { TokenInterceptorInterceptor } from './services/token-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide : HTTP_INTERCEPTORS ,
+     useClass : TokenInterceptorInterceptor , multi : true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
