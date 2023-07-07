@@ -14,6 +14,6 @@ API_URL = 'http://localhost:5200/api/v1/users/'
   login(email:string , pass: string)
   {
      
-    return  this.http.post(`${this.API_URL}/login`,{ email, 'password' : pass});
+    return  this.http.post(`${this.API_URL}login`,{ email, 'password' : pass});
   }
 }
